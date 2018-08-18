@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+
+    tools:context=".Fragments.SAESFragment">
+
+
+
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+
+        android:gravity="center_horizontal"
+
+        android:orientation="vertical">
+
+
+
+        <ImageView
+
+            android:id="@+id/img_saes"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="67dp"
+
+            android:contentDescription=""
+
+            android:src="@drawable/saes_logo" />
+
+
+
+        <TextView
+
+            android:id="@+id/textView"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:text="@string/str_boleta" />
+
+
+
+        <EditText
+
+            android:id="@+id/txt_boleta"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:ems="10"
+
+            android:inputType="numberPassword" />
+
+
+
+        <!--TextView
+
+            android:id="@+id/textView2"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:text="@string/str_passSaes" />
+
+
+
+        <EditText
+
+            android:id="@+id/txt_pass"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:ems="10"
+
+            android:inputType="textPassword" />
+
+
+        <WebView
+
+            android:id="@+id/wv_captcha"
+
+            android:layout_width="299dp"
+
+            android:layout_height="122dp" />
+
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Captcha" />
+
+        <EditText
+
+            android:id="@+id/txt_captcha"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+
+            android:ems="10"
+
+            android:inputType="textPersonName"
+
+            />
+
+        <Button
+
+            android:id="@+id/btn_captcha"
+
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+
+            android:layout_width="384dp"
+
+            android:layout_height="wrap_content"
+
+            android:text="OTRO CAPTCHA" /-->
+
+
+        <Button
+
+            android:id="@+id/btn_login"
+
+            style="@style/Widget.AppCompat.Button.Colored"
+
+            android:layout_width="384dp"
+
+            android:layout_height="wrap_content"
+
+            android:text="Descargar horario" />
+
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pdfView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+
+    </LinearLayout>
+
+</FrameLayout>

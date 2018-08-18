@@ -1,0 +1,80 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mx.android.schoolapps.schoolmapp.Fragments.AllClassroomsFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <!--suppress AndroidDomInspection -->
+            <TextView
+                android:id="@+id/textViewFirstFloor"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:background="?attr/colorPrimary"
+                android:text="Primer\nEdificio"
+                android:textColor="#FFFF"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <!--suppress AndroidDomInspection -->
+            <TextView
+                android:id="@+id/textViewSecondFloor"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="?attr/colorPrimary"
+                android:text="Edificio\nCentral"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:textColor="#FFFF"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <!--suppress AndroidDomInspection -->
+            <TextView
+                android:id="@+id/textViewThirdFloor"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
+                android:background="?attr/colorPrimary"
+                android:text="Segundo\nEdificio"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:textColor="#FFFF"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

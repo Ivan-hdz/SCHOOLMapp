@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="mx.android.schoolapps.schoolmapp.Fragments.VersionFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:layout_weight=".21"
+        android:gravity="center"
+        android:text="Versión: 1.0"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:src="@drawable/official_logo"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".2"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:gravity="center|start"
+        android:text="Características:"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/textViewCaracteristicas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="16dp"
+        android:textSize="16sp"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".2"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:gravity="center|start"
+        android:text="Desarrollada por:"
+        android:textSize="18sp"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/textViewVersionNames"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <Button
+        android:id="@+id/buttonSugerencias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:text="Enviar sugerencias"
+        android:textColor="@color/cardview_light_background" />
+
+</LinearLayout>

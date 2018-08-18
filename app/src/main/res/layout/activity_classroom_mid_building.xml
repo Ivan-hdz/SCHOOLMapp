@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="mx.android.schoolapps.schoolmapp.Activities.ClassroomMidBuilding">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--suppress AndroidDomInspection, AndroidDomInspection -->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbarClassroomThirdFloor"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:layout_scrollFlags="scroll|enterAlways|snap">
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="55dp">
+
+        <GridView
+            android:id="@+id/gridViewClassroomsThirdFloor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:columnWidth="90dp"
+            android:numColumns="3"
+            android:verticalSpacing="10dp"
+            android:horizontalSpacing="10dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayoutUpArrowMidBuilding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_anchor="@id/gridViewClassroomsThirdFloor"
+        app:layout_anchorGravity="center|end">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabMidBuildingUpArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="80dp"
+            android:elevation="4dp"
+            android:src="@android:drawable/arrow_up_float"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_anchor="@id/frameLayoutUpArrowMidBuilding"
+        app:layout_anchorGravity="center|end">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabMidBuildingDownArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:elevation="4dp"
+            android:src="@android:drawable/arrow_down_float"/>
+    </FrameLayout>
+
+</android.support.design.widget.CoordinatorLayout>

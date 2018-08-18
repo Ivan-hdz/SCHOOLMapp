@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/groupMenuClassroom"
+        android:title="ORDENAR POR"
+        app:showAsAction="always"
+        android:visible="false">
+        <menu>
+            <group
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/classroomSortAtoZ"
+                    android:title="A a Z"
+                    android:checked="true"/>
+                <item
+                    android:id="@+id/classroomSortZtoA"
+                    android:title="Z a A"/>
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/searchButton"
+        android:title="Search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:visible="false"
+        app:actionViewClass="android.support.v7.widget.SearchView"/>
+
+    <item
+        android:id="@+id/updateButton"
+        android:title="Update"
+        android:orderInCategory="101"
+        android:icon="@android:drawable/stat_sys_download_done"
+        app:showAsAction="always"
+        android:visible="false"/>
+
+</menu>

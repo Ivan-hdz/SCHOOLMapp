@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">SCHOOLMapp</string>
+    <string name="facebook_app_id">1644027355666709</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="classroom">Salón</string>
+    <string name="group">Grupo</string>
+    <string name="teacher">Profesor</string>
+
+    <string name="css_mainSAES">
+        "document.getElementById(\"wrapper\").style.width = \"auto\"
+        document.forms[0].style.width = \"auto\"
+        document.getElementById(\"wrapper\").style.height = \"auto\"
+        document.getElementById(\"wrapper\").style.padding = \"none\"
+        document.getElementById(\"wrapper\").style.margin = \"none\"
+        document.getElementById(\"header\").style.display = \"none\"
+        document.getElementById(\"mainnav\").style.display = \"none\"
+        document.getElementById(\"centercolumn\").style.display = \"none\"
+        document.getElementById(\"leftcolumn\").style.position = \"absolute\"
+        document.getElementById(\"leftcolumn\").style.left = \"100px\"
+        document.getElementsByClassName(\"sidebarcontainer\")[0].style.width = \"140px\"
+        document.getElementsByClassName(\"sidebarcontainer\")[1].style.display = \"none\"
+        document.getElementById(\"footer\").style.display = \"none\"
+        document.getElementById(\"wrapper\").style.border = \"none\"
+        document.body.style.background = \"#141414\"
+        document.body.style.width = \"auto\"
+        document.body.style.height = \"auto\"
+        document.getElementById(\"wrapper\").style.background = \"transparent\"
+        document.getElementById(\"wrapper\").style.border = \"none\"
+        document.getElementById(\"leftcolumn\").style.rigth = \"auto\""
+    </string>
+    <string name="getBoleta">"document.getElementById(\"ctl00_leftColumn_LoginNameSession\").innerHTML"</string>
+    <string name="isLoged">"document.getElementById(\"ctl00_leftColumn_LoginUser_CaptchaLabel\").innerHTML"</string>
+    <string name="firstHalfRegExp">"https://www.saes.escom.ipn.mx/PDF/Alumnos/Reinscripciones/"</string>
+    <string name="secondHalfRegExp">"-ComprobanteHorario.pdf"</string>
+    <string name="saes">img_saes</string>
+    <string name="str_boleta">Número de boleta</string>
+    <string name="str_passSaes">Contraseña</string>
+    <string name="server_url">http://escomapptest.ddns.net:1235</string>
+</resources>

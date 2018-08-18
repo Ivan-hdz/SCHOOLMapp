@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navMenuMain"
+            android:title="Mapa"
+            android:icon="@drawable/map_pic"/>
+        <item
+            android:id="@+id/navMenuClassrooms"
+            android:title="Salones"
+            android:icon="@drawable/classroom_pic"/>
+        <item
+            android:id="@+id/navMenuClubs"
+            android:title="Clubs"
+            android:icon="@drawable/clubs_pic"/>
+        <item
+            android:id="@+id/navMenuLibrary"
+            android:title="Biblioteca"
+            android:icon="@drawable/library_pic"/>
+        <item
+            android:id="@+id/navMenuStudentCounselor"
+            android:title="Alumnos Consejeros"
+            android:icon="@drawable/counselor_pic"/>
+        <item
+            android:id="@+id/navMenuTeachers"
+            android:title="Profesores"
+            android:icon="@drawable/teachers_pic"/>
+        <item android:id="@+id/navMenuStationary"
+            android:title="Papeleria"
+            android:icon="@drawable/stationary_pic"/>
+        <item android:id="@+id/navMenuCafeteria"
+            android:title="Cafetería"
+            android:icon="@drawable/foodi"/>
+        <item
+            android:id="@+id/navMenuSAES"
+            android:icon="@drawable/brief2"
+            android:title="SAES - Descargar horario" />
+        <item
+            android:id="@+id/navMenuCalendar"
+            android:icon="@drawable/download_schedule_pic"
+            android:title="Calendario académico"/>
+        <item
+            android:id="@+id/navMenuAbout"
+            android:title="Acerca de ESCOM"
+            android:icon="@android:drawable/ic_dialog_info"/>
+        <item
+            android:id="@+id/navMenuVersion"
+            android:icon="@android:drawable/ic_dialog_alert"
+            android:title="Version" />
+
+    </group>
+
+</menu>

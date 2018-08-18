@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Buscar</title>
+    <meta charset="utf-8" lang="es">
+    <style type="text/css">
+        .input
+        {
+            font-size: 42px;
+            background-color: transparent;
+            border: none;
+        }
+        td
+        {
+            color: #141414
+        }
+        button
+        {
+            background-color: #141414;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            border-radius: 3px;
+            padding: 10px;
+            font-size: 20px;    
+            margin-top: 30px;
+        }
+        body
+        {
+            color: whitesmoke;
+            font-weight: bold;
+            background-color: #1e90ff;
+            font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+        }
+        .cursor-pointer
+        {
+            cursor: pointer;
+        }
+        .center{
+            text-align: center;
+        }
+        #horario
+        {
+            border: 1px solid #141414;
+            border-radius: 5px;
+            font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+            background-color: #ECF0F1;
+            position: fixed;
+            display:none;
+            flex-direction: row;
+            flex-wrap: wrap;
+            left: 0;
+        }
+        .grupo
+        {
+            background-color: #141414;
+            color: whitesmoke;
+        }
+        .header
+        {
+            background-color: #ECF0F1;
+        }
+        .clase{
+            background-color: white;
+        }
+        #opacity-mask
+        {
+            width: 100%;
+            height: 100%;
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #141414;
+        }
+
+    </style>
+    <!-- Jquery script https://jquery.com/ -->
+    <script src="jquery.js" type="text/javascript"></script>
+    <!--James Padolsey Script http://james.padolsey.com/javascript/regex-selector-for-jquery/ -->
+    <script src="regex.js" type="text/javascript"></script>
+
+    <!-- My script -->
+    <script type="text/javascript">
+
+        
+        $(document).ready(function()
+        {
+            const tempHeader = $("#horario").html();
+            const serverUrl = "http://187.202.16.154:1235";
+
+            //SVG initialize
+            $(".input").width( $("foreignObject").attr('width'));
+            $(".input").height( $("foreignObject").attr('height'));
+            $("#my-svg").height($(window).height());
+            $("#my-svg").fadeIn("fast");
+
+            //some functions
+            function getSalon(salonesArray, salon)
+            {
+                return salonesArray[salon.toString()]; 
+            }
+
+            function saveLocaly()
+            {
+                $.ajax({
+                    url: serverUrl,
+                    type: 'GET',
+                    dataType: 'json',
+                    data: null,
+                })
+                .done(function(data) {
+                    var clases = data.recordset;
+                    var actualSalon = "";
+                    var salones = new Object();
+                    for (var i = 0; i < clases.length; i++)
+                    {
+                        if(clases[i].Salon != actualSalon)
+                        {
+                            actualSalon = clases[i].Salon;
+                            if(!salones[actualSalon.toString()])
+                                salones[actualSalon.toString()] = new Array();
+                        }
+                        salones[actualSalon.toString()].push(clases[i]);
+                        
+                    }
+                    localStorage.salones = JSON.stringify(salones);
+                    console.log("Data saved locally");
+                })
+                .fail(function(error) {
+                    console.log("Get online in order to save schedules locally");
+                })
+                .always(function() {
+                    console.log("save locally complete");
+                });
+                
+            }
+
+
+            function designSchedule(horario)
+            {
+                
+                if(horario)
+                {
+                    $("#horario").html(tempHeader);
+                    var innerHTML = "";
+                    var grupoActual = horario[0].Grupo;
+                    innerHTML += "<tr  class='grupo center'><td style='color: whitesmoke' colspan='9'>" + grupoActual + "</td></tr>"
+                    for (var i = 0; i < horario.length; i++)
+                    {
+                        var clase = horario[i];
+                        if(clase.Grupo != grupoActual)
+                        {
+                            grupoActual = clase.Grupo;
+                            innerHTML += "<tr  class='grupo center'><td style='color: whitesmoke' colspan='9'>" + grupoActual + "</td></tr>"
+                        }
+                        innerHTML += "<tr class='clase'>";
+                        innerHTML += "<td>" + clase.NombreAsig + "</td>";
+                        innerHTML += "<td>" + clase.NombreProf + "</td>";
+                        innerHTML += "<td>" + clase.CveLab + "</td>";
+                        innerHTML += "<td>" + clase.Salon + "</td>";
+                        innerHTML += "<td>" + clase.Lunes + "</td>";
+                        innerHTML += "<td>" + clase.Martes + "</td>";
+                        innerHTML += "<td>" + clase.Miercoles + "</td>";
+                        innerHTML += "<td>" + clase.Jueves + "</td>";
+                        innerHTML += "<td>" + clase.Viernes + "</td>";
+                        innerHTML += "</tr>";
+                    }
+                    
+                    $("#horario").append(innerHTML);
+
+                }else{
+                    $("#horario").html("<h1> No hay horario disponible para este salón</h1>");
+                    $("#horario").css({
+                        padding: '6px',
+                        textAlign: 'center',
+                        width: '100%'
+                    });
+                }
+                //Chart design
+                var topPer = (100 - ($("#horario").height() / $(window).height())*100)/2;
+                $("#horario").css("top",topPer+"%");
+                $("#horario")
+                    .css("display", "flex")
+                    .hide()
+                    .fadeIn('fast');
+                $("#opacity-mask").css({
+                    opacity: '0.7',
+                    display: 'inline'
+                });
+            }
+            
+            $("text").css("cursor", "pointer");
+            $("#opacity-mask").click(function(event) {
+                $("#horario").fadeOut('fast');
+                $("#horario").css('width', 'auto');
+                $("#opacity-mask").css("display", "none");
+            });
+
+            //Separador, para posterior optimizacion
+            $("#btn_buscar").click(function(event) {
+
+                var param = "";
+                var value = "";
+                if($("#grupo_selected").attr("fill") == "#141414")
+                    param = "grupo"
+                else
+                    param = "profe"
+                value = $("#txt_search").val();
+                $.ajax({
+                    url: serverUrl + '?' + param + '=' + value,
+                    type: 'GET',
+                    dataType: 'json',
+                    data: null,
+                })
+                .done(function(data) {
+                    var horario = data.recordset;
+                    designSchedule(horario);
+                })
+                .fail(function(error) {
+                    console.log("error: " + JSON.stringify(error));
+                })
+                .always(function() {
+                    console.log("complete");
+                });
+                
+            });
+            //Dealing with radio svg buttons
+            $("#radio_profe").click(function(event) {
+                $("#profe_selected").attr("fill", "#141414");
+                $("#grupo_selected").attr("fill", "#f9f9f9");
+            });
+            $("#radio_grupo").click(function(event) {
+                $("#grupo_selected").attr("fill", "#141414");
+                $("#profe_selected").attr("fill", "#f9f9f9");
+            });
+        });
+    </script>
+
+</head>
+<body>
+<center>
+    <div id="opacity-mask"></div>
+    <svg id="my-svg" style="display: none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1081 1921">
+        <!--SVG modifications
+            + <tspan id="txt_input"></tsptan> between text tags inside textbox group
+            - cls-7 and cls-9 from defs
+            + fill attr to grupo_selected and profe_selected
+         -->
+        <defs>
+            <style>
+                .cls-1 {
+                    fill: #2e86de;
+                }
+
+                .cls-1,
+                .cls-7,
+                .cls-9 {
+                    stroke: #000;
+                }
+
+                .cls-1,
+                .cls-3,
+                .cls-5,
+                .cls-7,
+                .cls-9 {
+                    stroke-miterlimit: 10;
+                }
+
+                .cls-2,
+                .cls-6 {
+                    font-size: 61px;
+                }
+
+                .cls-2,
+                .cls-3 {
+                    fill: #f2f2f2;
+                }
+
+                .cls-2,
+                .cls-4,
+                .cls-6 {
+                    font-family: CenturyGothic-Bold, Century Gothic;
+                    font-weight: 700;
+                }
+
+                .cls-3 {
+                    stroke: #141414;
+                }
+
+                .cls-3,
+                .cls-5 {
+                    stroke-width: 4px;
+                }
+
+                .cls-4 {
+                    font-size: 47px;
+                }
+
+                .cls-5 {
+                    fill: none;
+                    stroke: #a1a1a1;
+                }
+
+                .cls-7,
+                .cls-9 {
+                    stroke-width: 3px;
+                }
+
+                .cls-8 {
+                    font-size: 60px;
+                    font-family: CenturyGothic, Century Gothic;
+                }
+
+                .cls-8,
+                
+                </style>
+        </defs>
+        <title>search_2</title>
+        <g id="Capa_2" data-name="Capa 2">
+            <g id="SearchDeeper">
+                <rect id="background" class="cls-1" x="0.5" y="0.5" width="1080" height="1920" />
+                <text class="cls-2" transform="translate(190.0835 247.5)">En esta sección podrás
+                    <tspan x="67.1206" y="73.2002">consultar el horario</tspan>
+                    <tspan x="-84.7837" y="146.3999" xml:space="preserve"> de un grupo en especifico o </tspan>
+                    <tspan x="61.0151" y="219.6001">el horario de clases</tspan>
+                    <tspan x="-80.5093" y="292.7998">de un profesor en especifico.</tspan>
+                </text>
+                <g id="textbox">
+                    <rect class="cls-3" x="26" y="746" width="1029" height="159" rx="12" ry="12" />
+                    <foreignObject  x="36" y="746" width="1029" height="159">
+                        <div xmlns="http://www.w3.org/1999/xhtml">
+                            <input type="text" id="txt_search" class="input" placeholder="Hola mundo">
+                        </div>
+                    </foreignObject>
+                    <line class="cls-5" x1="36" y1="866" x2="1046" y2="866" />
+                </g>
+                <g id="btn_buscar" class="cursor-pointer">
+                    <rect class="cls-3" x="392" y="1205" width="298" height="136" rx="12" ry="12" />
+                    <text class="cls-6" transform="translate(440.7563 1291.417)">Buscar</text>
+                </g>
+                <g id="radio_buttons" class="cursor-pointer">
+                    <g id="radio_grupo">
+                        <circle id="grupo_selected" fill="#141414" class="cls-7" cx="141" cy="1038" r="31.5" />
+                        <text class="cls-8" transform="translate(195.5 1059)">Grupo</text>
+                    </g>
+                    <g id="radio_profe">
+                        <circle id="profe_selected" fill="#f9f9f9" class="cls-9" cx="709" cy="1038" r="31.5" />
+                        <text class="cls-8" transform="translate(763.5 1059)">Profesor</text>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </svg>
+    <table id="horario">
+        <tr class="center header">
+            <td>Asignatura</td>
+            <td>Profesor</td>
+            <td>Laboratorio</td>
+            <td>Salón</td>
+            <td>Lunes</td>
+            <td>Martes</td>
+            <td>Miercoles</td>
+            <td>Jueves</td>
+            <td>Viernes</td>
+        </tr>
+    </table>
+</center>
+</body>
+</html>
