@@ -33,17 +33,9 @@
             android:title="Cafetería"
             android:icon="@drawable/foodi"/>
         <item
-            android:id="@+id/navMenuSAES"
-            android:icon="@drawable/brief2"
-            android:title="SAES - Descargar horario" />
-        <item
             android:id="@+id/navMenuCalendar"
             android:icon="@drawable/download_schedule_pic"
             android:title="Calendario académico"/>
-        <item
-            android:id="@+id/navMenuAbout"
-            android:title="Acerca de ESCOM"
-            android:icon="@android:drawable/ic_dialog_info"/>
         <item
             android:id="@+id/navMenuVersion"
             android:icon="@android:drawable/ic_dialog_alert"

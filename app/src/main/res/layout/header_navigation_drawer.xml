@@ -13,8 +13,8 @@
             android:id="@+id/imageViewNavigationHeader"
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/escom_portrait"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ipn_cover"
             android:adjustViewBounds="true"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -33,7 +33,6 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:text="Escuela Superior de Cómputo"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@android:color/white"
             android:textStyle="bold"

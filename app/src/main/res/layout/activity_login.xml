@@ -10,5 +10,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="50dp"
-        android:src="@drawable/escom_start_logo"/>
+        android:src="@drawable/schoolapp_start_logo"/>
 </FrameLayout>

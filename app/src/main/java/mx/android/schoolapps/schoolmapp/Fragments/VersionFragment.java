@@ -15,25 +15,14 @@ import android.widget.Toast;
 import mx.android.schoolapps.schoolmapp.Activities.MainActivity;
 import mx.android.shcoolapps.schoolmap.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * Use the {@link VersionFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class VersionFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     public VersionFragment() {
-        // Required empty public constructor
     }
 
     public static VersionFragment newInstance(String param1, String param2) {
@@ -57,7 +46,6 @@ public class VersionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_version, container, false);
 
         TextView names= view.findViewById(R.id.textViewVersionNames);
@@ -72,7 +60,7 @@ public class VersionFragment extends Fragment {
 
 
                 try {
-                    startActivity(Intent.createChooser(emailIntent,  "Sugerencia ESCOM"));
+                    startActivity(Intent.createChooser(emailIntent,  "Sugerencia ESCUELA"));
                 } catch (android.content.ActivityNotFoundException ex) {
                     Toast.makeText(v.getContext(),"Error al enviar correo", Toast.LENGTH_SHORT).show();
                 }
@@ -91,8 +79,8 @@ public class VersionFragment extends Fragment {
     }
 
     public String getNames(){
-        return "• Espinosa de los Monteros Lechuga Jaime Daniel\n" +
-                "• Esquivel Valdez Alberto\n" +
-                "• Hernández Salinas Octavio Iván";
+        return "• Melchor Lechu\n" +
+                "• Gaspar Esqui\n" +
+                "• Baltasar Herz";
     }
 }

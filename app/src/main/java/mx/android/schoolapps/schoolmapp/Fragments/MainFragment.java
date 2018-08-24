@@ -68,7 +68,7 @@ public class MainFragment extends Fragment {
         webSettings.setDisplayZoomControls(false);
         webSettings.setDomStorageEnabled(true);
         webView.addJavascriptInterface(new JavaBridge(this), "JavaBridge");
-        webView.loadUrl("file:///android_asset/escomMap.html");
+        webView.loadUrl("file:///android_asset/schoolMap.html");
 
         return view;
     }

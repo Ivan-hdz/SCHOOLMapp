@@ -169,7 +169,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void getEscomPublicPageData(){
+    private void getSchoolPublicPageData(){
         System.out.println("ACCESS TOKEN= " + accessToken);
 
         GraphRequest request = GraphRequest.newGraphPathRequest(

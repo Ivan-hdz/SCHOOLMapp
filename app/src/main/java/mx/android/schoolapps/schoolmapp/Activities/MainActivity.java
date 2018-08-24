@@ -1,12 +1,8 @@
 package mx.android.schoolapps.schoolmapp.Activities;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -15,7 +11,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
@@ -25,14 +20,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.facebook.login.LoginManager;
 
 import java.util.ArrayList;
 
 import mx.android.schoolapps.schoolmapp.Database.DownloadScheduleInfo;
 import mx.android.schoolapps.schoolmapp.Database.ScheduleContract;
 import mx.android.schoolapps.schoolmapp.Database.ScheduleDBHelper;
-import mx.android.schoolapps.schoolmapp.Fragments.AboutFragment;
 import mx.android.schoolapps.schoolmapp.Fragments.CafeteriaFragment;
 import mx.android.schoolapps.schoolmapp.Fragments.CalendarFragment;
 import mx.android.schoolapps.schoolmapp.Fragments.ClassroomsFragment;
@@ -40,7 +33,6 @@ import mx.android.schoolapps.schoolmapp.Fragments.ClubsFBFragment;
 
 import mx.android.schoolapps.schoolmapp.Fragments.FLFB;
 import mx.android.schoolapps.schoolmapp.Fragments.MainFragment;
-import mx.android.schoolapps.schoolmapp.Fragments.SAESFragment;
 import mx.android.schoolapps.schoolmapp.Fragments.StationaryFragment;
 import mx.android.schoolapps.schoolmapp.Fragments.StudentsCounselorFragment;
 import mx.android.schoolapps.schoolmapp.Fragments.TeachersFragment;
@@ -58,11 +50,10 @@ public class MainActivity extends AppCompatActivity implements
 
     private int SHOW_MENU_CAFETERIA_AND_STATIONAY= 3;
     private int SHOW_MENU_CLASSROOM= 2;
-    private int SHOW_SEARCH_MENU= 1;
     private int HIDE_MENU= 0;
     private int menuState= HIDE_MENU;
-    private SearchView searchView;
 
+    private Fragment fragment, fragmentMain= null;
     private int navItemIndex= 0;
 
     @Override
@@ -141,7 +132,9 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     private void setFragmentByDefault(){
-        createFragment(new MainFragment(), navigationView.getMenu().getItem(0));
+        fragmentMain= new MainFragment();
+        fragment= fragmentMain;
+        createFragment(fragmentMain, navigationView.getMenu().getItem(0));
     }
 
     private void createFragment(Fragment fragment, MenuItem item){
@@ -150,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements
                 .commit();
         item.setChecked(true);
         if(item == navigationView.getMenu().getItem(0))
-            getSupportActionBar().setTitle("SCHOOLMapp - Mapa");
+            getSupportActionBar().setTitle("SCHOOLapp - Mapa");
         else
             getSupportActionBar().setTitle(item.getTitle());
     }
@@ -159,7 +152,6 @@ public class MainActivity extends AppCompatActivity implements
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         boolean fragmentTransaction= false;
-        Fragment fragment= null;
 
         menuState= HIDE_MENU;
         invalidateOptionsMenu();
@@ -215,23 +207,13 @@ public class MainActivity extends AppCompatActivity implements
                 menuState= SHOW_MENU_CAFETERIA_AND_STATIONAY;
                 invalidateOptionsMenu();
                 break;
-            case R.id.navMenuAbout:
-                navItemIndex= 8;
-                fragment= new AboutFragment();
-                fragmentTransaction= true;
-                break;
-            case R.id.navMenuSAES:
-                navItemIndex= 9;
-                fragment= new SAESFragment();
-                fragmentTransaction= true;
-                break;
             case R.id.navMenuCalendar:
-                navItemIndex=10;
+                navItemIndex=8;
                 fragment = new CalendarFragment();
                 fragmentTransaction=true;
                 break;
             case R.id.navMenuVersion:
-                navItemIndex= 11;
+                navItemIndex= 9;
                 fragment= new VersionFragment();
                 fragmentTransaction= true;
                 break;
@@ -270,8 +252,10 @@ public class MainActivity extends AppCompatActivity implements
             return;
         }
 
-        if (!searchView.isIconified()) {
-            searchView.setIconified(true);
+        Fragment mainFragment= getSupportFragmentManager().findFragmentById(R.id.content_frame);
+
+        if(!(mainFragment instanceof MainFragment)) {
+            setFragmentByDefault();
             return;
         }
 
@@ -280,30 +264,28 @@ public class MainActivity extends AppCompatActivity implements
         // checking if user is on other navigation menu
         // rather than home
 
-        if (navItemIndex != 0) {
+        if(navItemIndex == 0 && fragment.equals(fragmentMain)){
+            AlertDialog.Builder exitDialog= new AlertDialog.Builder(this);
+            exitDialog.setTitle("¿Desea salir?");
+            exitDialog.setPositiveButton("Salir", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finishAffinity();
+                }
+            });
+
+            exitDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+
+            exitDialog.show();
+        }else if (navItemIndex != 0) {
             navItemIndex = 0;
             menuState= HIDE_MENU;
             setFragmentByDefault();
-            return;
         }
-
-        AlertDialog.Builder exitDialog= new AlertDialog.Builder(this);
-        exitDialog.setTitle("¿Desea salir?");
-        exitDialog.setPositiveButton("Salir", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finishAffinity();
-            }
-        });
-
-        exitDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-
-        exitDialog.show();
     }
 
     @Override

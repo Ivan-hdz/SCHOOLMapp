@@ -5,7 +5,7 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/escom_start_logo"
+            android:src="@drawable/schoolapp_start_logo"
             />
     </item>
 
